@@ -1,0 +1,1032 @@
+\documentclass[leqno,DIV=calc,paper=a4,fontsize=11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\setlength{\oddsidemargin}{0mm}					% Adjusting margins to center the colorbox, ...
+\setlength{\evensidemargin}{0mm}					% ... you might want to change these
+
+\usepackage[english]{babel}
+\usepackage[protrusion=true,expansion=true]{microtype}	
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fix-cm}
+% various theorems, numbered by section
+\usepackage{array}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{makecell}%line width
+
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{arrows, positioning, quotes, shapes}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{rem}[thm]{Remark}
+\theoremstyle{plain}
+
+
+\theoremstyle{remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+\DeclareMathOperator{\id}{id}
+% ------------------------------------------------------------------------------
+% Definitions (do not change this)
+% ------------------------------------------------------------------------------
+\newcommand{\HRule}[1]{\hfill \rule{0.2\linewidth}{#1}} 	% Horizontal rule
+
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+
+\makeatletter							% Title
+\def\printtitle{%						
+    {\centering \@title\par}}
+\makeatother									
+
+\makeatletter							% Author
+\def\printauthor{%					
+    {\centering \large \@author}}				
+\makeatother							
+
+% ------------------------------------------------------------------------------
+% Metadata (Change this)
+% ------------------------------------------------------------------------------
+\title{	\fontsize{50}{60}\selectfont
+			\vspace*{0.7cm}
+            \hfill A Note on Differential 	\\[0.8cm]
+			\hfill Equations 	\\[0.8cm]
+		}
+
+\author{
+		\hfill Miliyon T.\\	
+		\hfill Addis Ababa University\\	
+		\hfill Department of Mathematics\\
+        \hfill \texttt{http://www.albohessab.weebly.com} \\
+}
+
+\newcommand{\R}[1]{$(\ref{#1})$}
+\newcommand{\rrr}{I\!\!R}
+
+\begin{document}
+\parindent=0em
+% ------------------------------------------------------------------------------
+% Maketitle
+% ------------------------------------------------------------------------------
+\thispagestyle{empty}				% Remove page numbering on this page
+
+\colorbox{grey}{
+	\parbox[t]{1.0\linewidth}{
+		\printtitle
+		\vspace*{0.5cm}
+	}
+}
+
+  	\vfill
+\printauthor								% Print the author data as defined above
+\HRule{1pt}
+\clearpage
+% ------------------------------------------------------------------------------
+% Begin document (Content goes below)
+% ------------------------------------------------------------------------------
+\tableofcontents
+\newpage
+\section{Introduction}
+
+\begin{defn}[\textbf{Lipschitz}]\label{def1}
+A map $f:\Omega\subset \Bbb R\times\Bbb R^n\rightarrow \Bbb R^n$ is Lipschitz in $x$ if the inequality
+\begin{align}
+|f(t,x_1)-f(t,x_2)|\leq K|x_1-x_2|,
+\end{align}
+holds wherever $(t,x_1),(t,x_2)\in \Omega.$
+\end{defn}
+As a consequence of Definition (\ref{def1}) a function f is Lipschitz iff there exists a constant $K>0$ such that
+\begin{align*}
+\frac{|f(t,x_1)-f(t,x_2)|}{|x_1-x_2|}\leq K,\qquad x_1\neq x_2,
+\end{align*}
+whenever $(t,x_1),(t,x_2)\in \Omega.$
+\begin{thm}
+Define rectangle $R$ by
+\begin{align*}
+R=\{(t,x):|t-t_0|\leq a,\ |x-x_0|\leq b\}
+\end{align*}
+where $a,b\in \Bbb R.$ If the following two conditions are satisfied
+\begin{enumerate}
+  \item $f:\Bbb R\rightarrow \Bbb R$ be a real valued continuous function.
+  \item $\frac{\partial f}{\partial x}$ be defined and continuous on $R$.
+\end{enumerate}
+Then $f$ is Lipschitz on $x$.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{lem}[\textbf{Gronwall}]\label{thm1}
+Assume that $f,g:[t_0,\infty)\rightarrow \Bbb R^{+}$ are non negative continuous functions. let $k>0$ be a constant. Then the inequality
+\begin{align}
+f(t)\leq k+\int_{t_0}^{t}g(s)f(s)ds,\qquad t\geq t_0
+\end{align}
+implies the inequality
+\begin{align}
+f(t)\leq k\exp\biggl(\int_{t_0}^{t}g(s)ds\biggl),\qquad t\geq t_0.
+\end{align}
+\end{lem}
+\begin{proof}
+By hypothesis we have
+\begin{align}\label{gron1}
+\frac{f(t)g(t)}{k+\int_{t_0}^{t}g(s)f(s)ds}\leq g(t), \qquad t\geq t_0
+\end{align}
+Since
+\begin{align*}
+\frac{d}{dt}\biggl(k+\int_{t_0}^{t}g(s)f(s)ds\biggl)=g(t)f(t)
+\end{align*}
+By integrating (\ref{gron1}) between the limits $t_0$ and $t$, we have
+\begin{align*}
+\ln\biggl(k+\int_{t_0}^{t}g(s)f(s)ds\biggl)-\ln(k)\leq\int_{t_0}^{t}g(s)ds
+\end{align*}
+In other words,
+\begin{align*}
+k+\int_{t_0}^{t}g(s)f(s)ds\leq k \exp\biggl(\int_{t_0}^{t}g(s)ds\biggl)
+\end{align*}
+Hence,
+\[f(t)\leq k \exp\biggl(\int_{t_0}^{t}g(s)ds\biggl) \]
+\end{proof}
+
+\begin{thm}[\textbf{Gronwall}\footnote{T.H. Gronwall proved the inequality in 1919.}]
+Let $x,\psi$ and $\chi$ be real continuous functions defined in $I=[a,b]$, $\psi(t)\geq0$ for $t\in I$. Suppose on $I$ the following inequality holds
+\begin{align}
+x(t)\leq \psi(t)+\int_{a}^{t}\chi(s)x(s)ds
+\end{align}
+Then
+\begin{align}
+x(t)\leq \psi(t)+\int_{a}^{t}\chi(s)\psi(s)\exp{\biggl[\int_{s}^{t}\chi(u)du\biggl]}ds
+\end{align}
+in $I$.
+\end{thm}
+\begin{proof}
+
+\end{proof}
+
+
+\begin{cor}
+Let $f$ and $k$ be as in Lemma (\ref{thm1}) If the inequality
+\begin{align}
+f(t)\leq k\int_{t_0}^{t}g(s)ds,\qquad t\geq t_0
+\end{align}
+holds then,
+\begin{align}
+f(t)\equiv 0,\text{ for } t\geq t_0.
+\end{align}
+\end{cor}
+\begin{proof}
+
+\end{proof}
+
+\subsection{Picard's Successive Approximations}
+
+\begin{defn}[\textbf{IVP}] \label{ivp}An initial value problem is given by
+\begin{align}\label{ivp}
+\begin{cases}
+x'=f(t,x)\\
+x(t_0)=x_0
+\end{cases}
+\end{align}
+\end{defn}
+
+Consider the IVP in (\ref{ivp}), the Picard's approximation to (\ref{ivp}) is given by
+
+\begin{align}
+x_{n+1}(t)=x_0+\int_{t_0}^{t}f(s,x_{n}(s))ds
+\end{align}
+
+\begin{exmp}
+Find the fourth Picard's approximation to the differential equation
+\[\frac{dx}{dt}=-x, \qquad x(0)=1, \ t\geq0.\]
+\begin{proof}[Solution]
+
+\end{proof}
+\end{exmp}
+
+\begin{exmp}
+Find the third Picard's approximation to the differential equation
+\[\frac{d^2y}{dx^2}=xy+1,\qquad y_0=1, \frac{dy}{dx}=0.\]
+\begin{proof}[Solution]
+Transform the second order equation $y''=f(x,y,y')$ into first order system,
+
+\begin{align*}
+y'&=z\\
+z'&=f(x,y,z)\\
+y_0&=1\\
+z_0&=0
+\end{align*}
+Then the Picard iteration is given by
+\begin{align*}
+y_{n+1}&=y_0+\int_{0}^{t}z_{n}(s)ds\\
+z_{n+1}&=z_0+\int_{0}^{t}f(s,y_{n}(s),z_{n}(s))ds
+\end{align*}
+Hence,
+\begin{align*}
+y_{1}&=1+\int_{0}^{t}0ds\\
+     &=1
+\end{align*}
+\begin{align*}
+z_{1}&=0+\int_{0}^{t}f(s,y_{0}(s),z_{0}(s))ds\\
+     &=\int_{0}^{t}(s+1)ds
+\end{align*}
+
+\end{proof}
+\end{exmp}
+\begin{exmp}
+Find the third Picard's approximation to the differential equation
+\[\frac{d^2y}{dx^2}=x^3\biggl(y+\frac{dy}{dx}\biggl),\qquad y_0=1,\ \frac{dy}{dx}=\frac{1}{2}.\]
+\begin{proof}[Solution]
+
+\end{proof}
+\end{exmp}
+
+\section{Existence and Uniqueness of solution}
+\begin{defn}[\textbf{$\varepsilon$-approximate}]
+Let $f\in C(\Bbb R)$ on $D$. An $\varepsilon$-approximate solution to the IVP $x'=f(t,x)$ is a function $\Phi\in C$ on a $t$ interval $I$ such that
+\begin{enumerate}
+  \item $(t,\Phi(t))\in D$,for $t\in I$.
+  \item $\Phi(t)\in C^{1}$, except for a finite set $S$ on which $\Phi$ has discontinuity.
+  \item $\|\Phi'(t)-f(t,\Phi(t))\|\leq\varepsilon$, for $t\in I\backslash S$.
+\end{enumerate}
+\end{defn}
+
+\begin{thm}[\textbf{Picard-Lindelof}]
+Assume that $f$ is a continuous and Lipschitz w.r.t x on the rectangle
+\begin{align*}
+R=\{(t,x):|t-t_0|\leq a,\ |x-x_0|\leq b\}.
+\end{align*}
+Let
+\begin{align*}
+M:=\max_{(t,x)\in R}\{\|f(t,x)\|\}
+\end{align*}
+and
+\begin{align*}
+\alpha:=\min\biggl\{a,\frac{b}{M}\biggl\}
+\end{align*}
+Then the initial value problem (\ref{ivp}) has a unique solution $x$ on $[t_0,t_0+\alpha]$. Furthermore,
+\begin{align*}
+|x(t)-x_0|<b,\qquad \text{for } t\in[t_0,t_0+\alpha].
+\end{align*}
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+\subsection{Cauchy-Peano Theorem}
+
+Let $I=[a,b]\subset \Bbb R$ be an interval and let $F(I,\Bbb R)$ denote the set of all real valued functions defined on $I$.
+
+\begin{defn}[\textbf{Equicontinuous}]
+A set of functions $F = \{f\}$ defined on a real interval $I$ is said to be equicontinuous on $I$ if, given any $\varepsilon > 0$, there exists a $\delta_{\varepsilon} > 0$, independent of $f\in F$ and also $t,\widetilde{t}\in I$ such that
+\begin{align*}
+|f(t)-f(\widetilde{t})|<\epsilon, \text{ whenever } |t-\widetilde{t}| < \delta.
+\end{align*}
+\end{defn}
+
+\begin{thm}[\textbf{Cauchy-Peano}]
+If $f\in C(\Bbb R)$, then there exists a solution $\phi\in C'$ of the IVP $x'=f(t,x)$ on $|t-\tau|<\alpha$ for which $\phi(\tau)=\xi$.
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{thm}[\textbf{Variation of constant formula}]
+If $p:(a,b)\to\Bbb R$ and $q:(a,b)\to \Bbb R$ are continuous functions, where $-\infty\leq a<b\leq \infty$. Then the unique solution of the IVP:
+\[x'=p(t)x+q(t),\qquad x(t_0)=x_0\]
+where $t_0\in (a,b)$, $x_0\in \Bbb R$ is given by
+\begin{align}
+x(t)=e^{\int_{t_0}^{t}p(r)dr}x_0+e^{\int_{t_0}^{t}p(r)dr}\int_{t_0}^{t}e^{-\int_{t_0}^{t}p(r)dr}q(s)ds,\qquad t\in (a,b).
+\end{align}
+\end{thm}
+
+\begin{proof}
+
+\end{proof}
+\section{Linear systems}
+We consider systems of differential equations of the form
+\[
+x_1'=ax_1+bx_2,
+\]
+
+\vspace*{-.35in}
+\begin{equation}
+\label{twosys}
+\end{equation}
+
+\vspace*{-.35in}
+\[
+x_2'=cx_1+dx_2,
+\]
+where $a,b,c$, and $d$ are real numbers. At first glance the system
+may seem to be first-order; however, it is coupled, and this
+two-dimensional system is more closely related to a second-order
+differential equation.
+
+Before finding the solution, some notation is introduced to simplify
+the form of the system. The new notation implicitly removes most of
+the $=$ and $+$ operations. The form of the system suggests arranging
+the unknown functions $x_1$, $x_2$ vertically and enclosed in brackets
+({\em i.e.} matrix form)
+\begin{equation}
+\left(
+\begin{array}{c}x_1\\x_2\end{array}
+\right).
+\label{matrix}
+\end{equation}
+This new object is similar to a number or function. Indeed, operations
+may be performed on \R{matrix}. Let $a\in\rrr$. We define
+\[
+\left(
+\begin{array}{c}u\\v\end{array}
+\right)' :=
+\left(
+\begin{array}{c}u'\\v'\end{array}
+\right)
+\hspace{.5in}
+a\left(
+\begin{array}{c}u\\v\end{array}
+\right)\equiv\left(
+\begin{array}{c}u\\v\end{array}
+\right)a :=
+\left(
+\begin{array}{c}au\\av\end{array}
+\right).
+\]
+The new object can be part of mathematical statements. We say
+\[
+\left(
+\begin{array}{c}a\\b\end{array}
+\right) =
+\left(
+\begin{array}{c}c\\d\end{array}
+\right)
+\]
+if and only if $a=c$ and $b=d$. Moreover, we set
+\[
+\left(
+\begin{array}{cc}a&b\\c&d\end{array}
+\right)
+\left(
+\begin{array}{c}x_1\\x_2\end{array}
+\right):=
+\left(
+\begin{array}{c}ax_1+bx_2\\cx_1+dx_2\end{array}
+\right).
+\]
+Then \R{twosys} is equivalent to
+\[
+\left(
+\begin{array}{c}x_1\\x_2\end{array}
+\right)'=
+\left(
+\begin{array}{cc}a&b\\c&d\end{array}
+\right)
+\left(
+\begin{array}{c}x_1\\x_2\end{array}
+\right),
+\]
+often written more simply as
+\[
+{\bf x}' = \left(
+\begin{array}{cc}a&b\\c&d\end{array}
+\right){\bf x}.
+\]
+
+\begin{center}{\bf\sc Real Eigenvalues}\end{center}
+
+In the calculations and expressions that follow both the matrix form
+(above) and the component form will be given and separated by ``or.''
+They are equivalent. Based on our discussion in class, we expect a
+solution of \R{twosys} to have the form
+\begin{equation}
+{\bf x} = \left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)e^{rt}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{cc}x_1=\xi_1e^{rt}\\x_2=\xi_2e^{rt}\end{array}
+\label{guess}
+\end{equation}
+where as of now, $\xi_1$, $\xi_2$, and $r$ are unknown. To be more
+concrete, we consider a specific system.
+
+%\pagebreak
+\noindent {\bf Example 1}. Consider the system of differential
+equations
+\begin{equation}
+{\bf x}' = \left(
+\begin{array}{cc}1&1\\4&1\end{array}
+\right){\bf x}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{cc}x_1'=x_1+x_2\\x_2'=4x_1+x_2\end{array}.
+\label{ex1}
+\end{equation}
+Our guess, \R{guess}, is substituted in \R{ex1}, and we find
+\[
+re^{rt}\left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)
+=
+\left(
+\begin{array}{cc}1&1\\4&1\end{array}
+\right)\left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)e^{rt}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{cc}r\xi_1=\xi_1+\xi_2\\r\xi_2=4\xi_1+\xi_2\end{array}.
+\]
+Rearranging gives
+\begin{equation}
+\left(
+\begin{array}{cc}1-r&1\\4&1-r\end{array}
+\right)\left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)=
+\left(\begin{array}{c}0\\0\end{array}\right)
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{cc}(1-r)\xi_1+\xi_2=0\\4\xi_1+(1-r)\xi_2=0\end{array}.
+\label{lines}
+\end{equation}
+
+Geometrically the last system of equations describe two lines passing
+through the origin. We do not want a unique solution (zero in this
+case), for that would say $\xi_1=\xi_2=0$, and our guess would not
+produce anything interesting. We want the lines in \R{lines} to be
+the same, so we require the slopes to be equal. That is,
+\[
+r^2-2r-3=0.
+\]
+The roots, called {\em eigenvalues}, are $r=3,-1$.
+
+Left to find are $\xi_1$ and
+$\xi_2$. Inserting $r=3$ back in \R{lines}, we find
+\[
+\begin{array}{c}-2\xi_1+\xi_2=0\\4\xi_1-2\xi_2=0\end{array}.
+\]
+As expected this system has infinitely many solutions, one of them is
+\[
+{\bf \xi} = \left(\begin{array}{c}1\\2\end{array}\right)
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}\xi_1=1\\\xi_2=2\end{array},
+\]
+and, a solution is
+\[
+{\bf x} = \left(\begin{array}{c}1\\2\end{array}\right)e^{3t}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}x_1=e^{3t}\\x_2=2e^{3t}\end{array}.
+\]
+A similar calculation for $r=-1$ shows
+\[
+{\bf \xi} = \left(\begin{array}{r}1\\-2\end{array}\right)
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}\xi_1=1\\\xi_2=-2\end{array},
+\]
+and, a solution is
+\[
+{\bf x} = \left(\begin{array}{r}1\\-2\end{array}\right)e^{3t}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}x_1=e^{3t}\\x_2=-2e^{3t}\end{array}.
+\]
+The general solution is therefore,
+\[
+{\bf x}=c_1\left(\begin{array}{c}1\\2\end{array}\right)e^{3t}
++c_2\left(\begin{array}{r}1\\-2\end{array}\right)e^{-t}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}x_1=c_1e^{3t}+c_2e^{-t}\\x_2=c_12e^{3t}-c_22e^{-t}\end{array}.
+\]
+
+\pagebreak
+\noindent{\bf Example 2}. Find the general solution of the ODE
+\[
+y''-2y'-3y=0, \hspace{.2in} y(0)=2,\,\,\, y'(0)=2.
+\]
+using the approach in Example 1.
+
+\vspace{.1in}
+\noindent{\em Solution}. We may turn the ODE into a system of ODEs by
+setting $x_1=y$ and $x_2=y'$. Then the second-order ODE is equivalent
+to
+\[
+\left(\begin{array}{c}x_1\\ x_2\end{array}\right)'=
+\left(
+\begin{array}{cc}0&1\\3&2\end{array}\right)
+\left(\begin{array}{c}x_1\\x_2\end{array}\right),\hspace{.25in}
+{\bf x}(0)=\left(\begin{array}{c}1\\1\end{array}\right).
+\]
+A comparison of \R{ex1} and \R{lines} in Example 1
+shows that we can immediately find the equations for
+${\bf \xi}$ in our guess. Here
+\[
+\left(
+\begin{array}{cc}0-r&1\\3&2-r\end{array}
+\right)\left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)=
+\left(\begin{array}{c}0\\0\end{array}\right)
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{cc}-r\xi_1+\xi_2=0\\3\xi_1+(2-r)\xi_2=0\end{array}.
+\]
+
+The polynomial for  $r$ is just the determinate or the upper-left
+diagonal element times the lower-right minus the product of the
+remaining two diagonal elements. Here, we find $-r(2-r)-3=0$ or
+\[
+r^2-2r-3=0.
+\]
+Note that this is the characteristic polynomial for the original
+second-order ODE! The roots are $r=3,-1$. Inserting $r=3$ in the
+equations for $\xi$, we find
+\[
+\begin{array}{c}-3\xi_1+\xi_2=0\\3\xi_1-\xi_2=0\end{array}.
+\]
+As expected this system has infinitely many solutions, one of them is
+\[
+{\bf \xi} = \left(\begin{array}{c}1\\3\end{array}\right)
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}\xi_1=1\\\xi_2=3\end{array},
+\]
+The other root, $r=-1$ gives
+\[
+\begin{array}{c}\xi_1+\xi_2=0\\3\xi_1+3\xi_1=0\end{array},
+\]
+and
+\[
+{\bf \xi} = \left(\begin{array}{c}1\\-1\end{array}\right)
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}\xi_1=1\\\xi_2=-1\end{array}.
+\]
+
+The general solution is therefore
+\[
+{\bf x}=c_1\left(\begin{array}{c}1\\3\end{array}\right)e^{3t}
++c_2\left(\begin{array}{r}1\\-1\end{array}\right)e^{-t}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}x_1=c_1e^{3t}+c_2e^{-t}\\x_2=c_13e^{3t}-c_2e^{-t}\end{array}.
+\]
+Since we set $y=x_1$ in the original transformation, the top line is
+the general solution to the second-order ODE, and the bottom line is the
+derivative of the top ($x_2=y'=x_1'$).
+
+To find $c_1$ and $c_2$ we use the initial data -
+\[
+\left(\begin{array}{c}2\\2\end{array}\right)
+= c_1\left(\begin{array}{c}1\\3\end{array}\right)
++c_2\left(\begin{array}{r}1\\-1\end{array}\right).
+\]
+Solving, we find $c_1=1=c_2$, and the solution is
+\[
+{\bf x}=\left(\begin{array}{c}1\\3\end{array}\right)e^{3t}
++\left(\begin{array}{r}1\\-1\end{array}\right)e^{-t}
+\hspace{.25in} \mbox{or} \hspace{.25in}
+\begin{array}{c}y=e^{3t}+e^{-t}\\y'=3e^{3t}-e^{-t}\end{array}.
+\]
+
+\pagebreak
+
+\vspace{.5in}
+\begin{center}{\bf\sc Complex Eigenvalues}\end{center}
+In this section we mostly drop the component form of the equations
+(get used to it). As in previous problems we use Euler's formula to
+change exponents with complex numbers to oscillatory functions.
+
+If $z=a+ib$ is a complex number, the complex conjugate is
+$\bar{z}=a-ib$. That is, $i$ is replaced with $-i$. In addition,
+the real and imaginary parts are denoted
+\[
+\mbox{Re}(z) = a \hspace{.5in} \mbox{Im}(z) = b.
+\]
+Both are real numbers.
+
+\vspace{.2in}
+\noindent {\bf Example 3} Solve the initial-value problem
+\[
+{\bf x}' = \left(\begin{array}{rr}2&8\\-1&-2\end{array}\right){\bf x},
+\hspace{.4in}{\bf x}(0)=
+\left(\begin{array}{r}1\\-1\end{array}\right).
+\]
+
+\vspace{.2in}
+\noindent{\em Solution}. As in the previous example, the system for
+$\xi$ is
+\[
+\left(
+\begin{array}{cc}2-r&8\\-1&-2-r\end{array}
+\right)\left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)=
+\left(\begin{array}{c}0\\0\end{array}\right).
+\]
+The nontrivial solution is obtained by requiring the determinate to
+be zero. That is,
+\[
+(2-r)(-2-r)-(-1)(8)= r^2+4=0.
+\]
+The eigenvalues (roots) are $r=\pm 2i$. The procedure is the same as
+in Example 2. Suppose $r=2i$. The equations for $\xi$ are
+\[
+\begin{array}{c}(2-2i)\xi_1+8\xi_2=0\\-1\xi_1+(-2-2i)\xi_2=0\end{array}.
+\]
+It is not obvious the two equations are multiples of one another.
+However, you can verify that $(-2+2i)$ times the second equation gives
+the first equation. A non-trivial solution is required. If we
+opportunistically set $\xi_2=1$ in the second equation, then $\xi_1=
+-2-2i$. So
+\[
+{\bf \xi} = \left(\begin{array}{c}2+2i\\-1\end{array}\right)
+\]
+will work, and one solution is
+\[
+{\bf x^{(1)}} = \left(\begin{array}{c}2+2i\\-1\end{array}\right)e^{2i\,t}.
+\]
+
+Since the other root (eigenvalue) is just the complex conjugate of the
+first, a second solution is found simply by changing $i$ in the first
+solution to $-i$ (its complex conjugate). So the general solutions is
+\begin{equation}
+{\bf x} =
+C_1\left(\begin{array}{c}2+2i\\-1\end{array}\right)e^{2i\,t}
++C_2\left(\begin{array}{c}2-2i\\-1\end{array}\right)e^{-2i\,t}.
+\label{complex}
+\end{equation}
+The complex numbers are undesirable. We hide them by using Euler's
+formula: $e^{i\theta}=\cos\theta+i\sin\theta$. The exponential
+functions in \R{complex} are replaced, and the result expressed
+as the real plus imaginary part -
+\[
+{\bf x} =
+C_1\left(\begin{array}{c}2+2i\\-1\end{array}\right)(\cos 2t+i\sin 2t)
++C_2\left(\begin{array}{c}2-2i\\-1\end{array}\right)(\cos 2t-i\sin 2t).
+\]
+Read across the first line and pick out all the terms without an
+$i$. Then do the same for the bottom line (that is, find the real
+part). The result is
+\[
+\mbox{Re}({\bf x}) = (C_1+C_2)\left(\begin{array}{c}
+2\cos 2t-2\sin 2t\\
+-\cos 2t\end{array}\right).
+\]
+The imaginary part consists of all the terms with an $i$ in
+front. In particular,
+\[
+i\mbox{Im}({\bf x}) = i(C_1-C_2)\left(\begin{array}{c}
+2\cos 2t+2\sin 2t\\
+-\sin 2t\end{array}\right).
+\]
+Finally, set $c_1=C_1+C_2$ and $c_2=i(C_1-C_2)$. Then
+\[
+{\bf x} = c_1\left(\begin{array}{c}
+2\cos 2t-2\sin 2t\\
+-\cos 2t\end{array}\right)+
+c_2\left(\begin{array}{c}
+2\cos 2t+2\sin 2t\\
+-\sin 2t\end{array}\right)
+\]
+is the general solution.
+
+\vspace{.2in}
+There is a slight short-cut to this procedure. Since there is so much
+symmetry in the solutions for the two roots (they differ by replacing
+$i$ with -$i$), one might expect that all the necessary information is
+contained in one of the solutions. This is the case. The solution for
+$r=2i$ (first part of Equation \R{complex}) is
+\[
+{\bf x^{(1)}} =
+\left(\begin{array}{c}2+2i\\-1\end{array}\right)e^{2i\,t}
+=\left(\begin{array}{c}2+2i\\-1\end{array}\right)(\cos 2t+i\sin 2t).
+\]
+To find the general solution, only the real and imaginary parts of
+this solution need to be found. Again rewriting as real plus
+imaginary,
+\[
+{\bf x^{(1)}} =
+\left(\begin{array}{c}
+2\cos 2t-2\sin 2t\\
+-\cos 2t\end{array}\right)+i
+\left(\begin{array}{c}
+2\cos 2t+2\sin 2t\\
+-\sin 2t\end{array}\right).
+\]
+The general solution is ${\bf x^{(1)}}=c_1\mbox{Re}({\bf x^{(1)}})
++c_2\mbox{Im}({\bf x^{(1)}})$ or
+\[
+{\bf x} = c_1\left(\begin{array}{c}
+2\cos 2t-2\sin 2t\\
+-\cos 2t\end{array}\right)+
+c_2\left(\begin{array}{c}
+2\cos 2t+2\sin 2t\\
+-\sin 2t\end{array}\right)
+\]
+as before.
+
+\vspace{.5in}
+\begin{center}{\bf\sc Repeated Eigenvalues}\end{center}
+Of course the eigenvalues need not all be distinct. Consider for
+example
+\begin{equation}
+{\bf x}' = \left(\begin{array}{rr}1&-1\\1&3\end{array}\right){\bf x}.
+\label{mroot}
+\end{equation}
+Proceeding as before, the system for ${\bf\xi}$ is
+\begin{equation}
+\left(
+\begin{array}{cc}1-r&-1\\1&3-r\end{array}
+\right)\left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)=
+\left(\begin{array}{c}0\\0\end{array}\right).
+\label{xisys}
+\end{equation}
+The nontrivial solution is obtained by requiring the determinate to
+be zero. That is,
+\[
+(1-r)(3-r)-(-1)= r^2-4r+4=0.
+\]
+The eigenvalues (roots) are $r=2,2$. The equations for ${\bf\xi}$ are
+\[
+\begin{array}{c}-\xi_1-\xi_2=0\\\xi_1+\xi_2=0\end{array}.
+\]
+A nontrivial solution is
+\[
+{\bf \xi} = \left(\begin{array}{r}1\\-1\end{array}\right),
+\]
+and one solution is
+\[
+{\bf x^{(1)}} = \left(\begin{array}{r}1\\-1\end{array}\right)e^{2t}.
+\]
+In analogy with second-order, linear, constant coefficient,
+homogeneous ODEs, we might expect the second solution to be
+\begin{equation}
+{\bf x^{(2)}} = t{\bf x^{(1)}}
+=t\left(\begin{array}{r}1\\-1\end{array}\right)e^{2t}.
+\label{hope}
+\end{equation}
+Unfortunately, this is NOT a solution. What to do?
+
+Somehow a candidate for the second solution has to be constructed from
+the only solution we have. Based on previous experiences, \R{hope} has
+to be close to the correct solution. We alter it slightly and try
+again. Set
+\begin{equation}
+{\bf x^{(2)}} = t{\bf x^{(1)}}+{\bf\eta}e^{2t}
+=t\left(\begin{array}{c}1\\-1\end{array}\right)e^{2t}+
+\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right)e^{2t}.
+\label{hope2}
+\end{equation}
+We have to see if a choice for ${\bf\eta}$ exists so that
+${\bf x^{(2)}}$ solves \R{mroot}. The left side of \R{mroot} (the time
+derivative of \R{hope2}) is
+\begin{equation}
+{\bf x^{(2)}}' = {\bf x^{(1)}}+t{\bf
+  x^{(1)}}'+\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right)2e^{2t}
+=\left(\begin{array}{c}1\\-1\end{array}\right)e^{2t}+
+2t\left(\begin{array}{c}1\\-1\end{array}\right)e^{2t}
++\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right)2e^{2t}.
+\label{ls}
+\end{equation}
+The right side is
+\begin{equation}
+\left(\begin{array}{rr}1&-1\\1&3\end{array}\right)
+\left(\begin{array}{c}1\\-1\end{array}\right)te^{2t}+
+\left(\begin{array}{rr}1&-1\\1&3\end{array}\right)
+\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right)e^{2t}.
+\label{rs}
+\end{equation}
+However,
+\[
+\left(\begin{array}{rr}1&-1\\1&3\end{array}\right)
+\left(\begin{array}{c}1\\-1\end{array}\right)te^{2t}
+=2t\left(\begin{array}{c}1\\-1\end{array}\right)e^{2t}.
+\]
+Equating \R{ls} and \R{rs}, canceling the common $e^{2t}$ and the
+other common terms, we find
+\[
+\left(\begin{array}{c}1\\-1\end{array}\right)+
+\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right)2
+=
+\left(\begin{array}{rr}1&-1\\1&3\end{array}\right)
+\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right).
+\]
+After rearranging ($r=2$ here)
+\[
+\left(\begin{array}{cc}1-r&-1\\1&3-r\end{array}\right)
+\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right)
+=\left(\begin{array}{c}1\\-1\end{array}\right)
+\]
+or more generally the system for ${\bf\eta}$ is
+\begin{equation}
+\left(\begin{array}{cc}1-r&-1\\1&3-r\end{array}\right)
+\left(\begin{array}{c}\eta_1\\\eta_2\end{array}\right)
+=\left(\begin{array}{c}\xi_1\\\xi_2\end{array}\right).
+\label{etasys}
+\end{equation}
+
+Notice \R{etasys} is an iteration of \R{xisys}. For the current
+example, \R{etasys} in component form is
+\begin{eqnarray*}-\eta_1-\eta_2&=&1\\
+\eta_1+\eta_2&=&\!\!\!-1.
+\end{eqnarray*}
+As for the system for ${\bf\xi}$, the two equations for $\eta$ are
+multiples of one another. Any solution will suffice. The simplest
+way to find a solution is to set either $\eta_1$ or $\eta_2$ to
+zero. Hence, $\eta_1=-1$ and $\eta_2=0$ will work, and the second
+solution is
+\[
+{\bf x^{(2)}}=t\left(\begin{array}{r}1\\-1\end{array}\right)e^{2t}+
+\left(\begin{array}{r}-1\\0\end{array}\right)e^{2t},
+\]
+and the general solution is
+\[
+{\bf x}=c_1\left(\begin{array}{r}1\\-1\end{array}\right)e^{2t}+
+c_2\left[\left(\begin{array}{r}1\\-1\end{array}\right)te^{2t}+
+\left(\begin{array}{r}-1\\0\end{array}\right)e^{2t}\right].
+\]
+
+\vspace{.2in}
+\noindent {\bf Example 4.} Find the solution of the following
+system of differential equations.
+\[
+{\bf x}' = \left(\begin{array}{rr}3&9\\-1&-3\end{array}\right){\bf x},
+\hspace{.4in}{\bf x}(0)=
+\left(\begin{array}{c}2\\4\end{array}\right).
+\]
+
+\vspace{.15in}
+\noindent{\em Solution}. The system for $\xi$ is
+\[
+\left(
+\begin{array}{cc}3-r&9\\-1&-3-r\end{array}
+\right)\left(\begin{array}{c}\xi_1\\ \xi_2\end{array}\right)=
+\left(\begin{array}{c}0\\0\end{array}\right).
+\]
+The nontrivial solution is obtained by requiring the determinate to
+be zero. That is,
+\[
+(3-r)(-3-r)-(-1)(9)= r^2=0.
+\]
+The eigenvalues (roots) are $r=0,0$. The equations for ${\bf\xi}$ are
+\[
+\begin{array}{c}3\xi_1+9\xi_2=0\\1\xi_1+3\xi_2=0\end{array}.
+\]
+A nontrivial solution is $\xi_1=3$, $\xi_2=-1$, and
+\[
+{\bf x^{(1)}}=\left(\begin{array}{r}3\\-1\end{array}\right).
+\]
+The system for ${\bf\eta}$ is
+\[
+\left(
+\begin{array}{cc}3&9\\-1&-3\end{array}
+\right)\left(\begin{array}{c}\eta_1\\ \eta_2\end{array}\right)=
+\left(\begin{array}{r}3\\-1\end{array}\right).
+\]
+Any non-trivial solution be sufficient. The choice $\eta_2=0$ and
+$\eta_1=1$ is a solution. Therefore, the general solution is
+\[
+{\bf x}=c_1\left(\begin{array}{r}3\\-1\end{array}\right)+
+c_2\left[t\left(\begin{array}{r}3\\-1\end{array}\right)+
+\left(\begin{array}{r}1\\0\end{array}\right)\right].
+\]
+
+To find the solution, the initial data must be applied. At $t=0$
+\[
+\left(\begin{array}{c}2\\4\end{array}\right)=
+{\bf x}(0)=c_1\left(\begin{array}{r}3\\-1\end{array}\right)+
+c_2\left(\begin{array}{r}1\\0\end{array}\right).
+\]
+We find $c_1=-4$ and $c_2=14$, and the solution is
+\[
+{\bf x}(t)=\left(\begin{array}{c}2+42t\\-4-14t\end{array}\right).
+\]
+\subsection{Equilibrium Points}
+Consider the autonomous system of ordinary differential equations of the form
+\begin{equation}\label{auton}
+\begin{aligned}
+\frac{dx}{dt}=f(x, y)\\
+\frac{dy}{dt}=g(x, y)
+\end{aligned}
+\end{equation}
+\begin{defn}[Equilibrium point]
+An equilibrium(a critical) point of the system (\ref{auton}) is a point $(x_*,y_*)$ such that
+\[
+f(x_*,y_*) = g(x_*,y_*) = 0
+\]
+\end{defn}
+Let $\textbf{x} = (x(t),y(t)),\textbf{x}_0 = (x_0,y_0)$, and $\textbf{x}_* = (x_*,y_*)$.
+A critical point $x_*$ is \textbf{stable} provided that, for each $\varepsilon> 0$, there exists $\delta>0$ such that
+\[
+\|\textbf{x}_0-\textbf{x}_*\| < \delta\Rightarrow \|\textbf{x}(t)-\textbf{x}_*\| <\varepsilon \mbox{ for all } t > 0.
+\]
+
+The critical point $(x_*,y_*)$ is called \textbf{unstable} if it is not stable.
+
+A critical point $x_*$ is  \textbf{asymptotically stable} if there exists $\delta>0$ such that
+\[
+\|\textbf{x}_0-\textbf{x}_*\| < \delta\Rightarrow \lim_{t\to\infty}\textbf{x}(t)=\textbf{x}_*
+\]
+Let $\lambda_1$ and $\lambda_2$ be the eigenvalues of
+\[
+J(\textbf{x}_*)=
+\begin{pmatrix}
+  f_x & f_y \\
+  g_x & g_y
+\end{pmatrix}\biggl|_{\textbf{x}_*}
+\]
+Then the stability of the equilibrium points of the system (\ref{auton}) is summarized in table \ref{tab:a}.
+
+\subsection{Stability}
+\begin{table}[!htb]
+\centering
+\caption{Stability properties of linear systems}\label{tab:a}
+\begin{tabular}{@{}  l l l @{}}\Xhline{4\arrayrulewidth}
+Eigenvalue    & Type of critical point  &  Stability        \\ \Xhline{4\arrayrulewidth}
+$\lambda_1,\lambda_2>0$ & Improper node           & Unstable \\
+$\lambda_1,\lambda_2<0$ & Improper node           & Asymptotically stable  \\
+$\lambda_2<0<\lambda_1>0$ & Saddle point            & Unstable   \\
+$\lambda_1=\lambda_2>0$ & Proper or improper node & Unstable  \\
+$\lambda_1=\lambda_2<0$ & Proper or improper node & Asymptotically stable \\
+$\lambda_1,\lambda_2=\lambda\pm i\mu$ & Spiral point            &   \\
+$\lambda>0$  &                         & Unstable \\
+$\lambda<0$  &                         & Asymptotically stable  \\
+$\lambda_1,\lambda_2=\pm i\mu$ &  Centre                 & Stable  \\
+\Xhline{4\arrayrulewidth}
+\end{tabular}
+\end{table}
+
+Table \ref{tab:a} provides information on the type of stability that could result based on the nature of the eigenvalues of a linear system.
+
+\subsection{The Routh-Hurwitz Criteria}
+Given a polynomial
+\[
+P(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\cdots+a_n
+\]
+where the coefficients $a_i$ are real constants,$i=1,2,\ldots,n$ define the $n$ Hurwitz matrices using the coefficients of the characteristic polynomial:
+$$
+H_1=
+\begin{pmatrix}
+a_1
+\end{pmatrix},
+H_2=
+\begin{pmatrix}
+a_1  & 1  \\
+a_3  & a_2
+\end{pmatrix},
+H_3=
+\begin{pmatrix}
+a_1  & 1    & 0   \\
+a_3  & a_2  & a_1  \\
+a_5  & a_4  & a_3
+\end{pmatrix},\cdots
+$$
+and
+$$
+H_n=
+\begin{pmatrix}
+a_1  & 1    & 0    & 0    & 0    & 0    & 0    & \cdot & \cdot & 0  \\
+a_3  & a_2  & a_1  & 1    & 0    & 0    & 0    & \cdot & \cdot & 0  \\
+a_5  & a_4  & a_3  & a_2  & a_1  & 1    & 0    & \cdot & \cdot & 0   \\
+a_7  & a_6  & a_5  & a_4  & a_3  & a_2  & a_1  & \cdot & \cdot & \cdot \\
+\cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
+\cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot & \cdot \\
+0    & 0    & 0    &  0   &  0   & 0    & 0    & \cdot & \cdot & a_n
+\end{pmatrix}
+$$
+
+where $a_j=0$ for $j>n$. All the roots of polynomial $P(\lambda)$ are negative or have negative real parts iff the determinants of all Hurwitz matrices are positive:
+\[\det H_j>0,\quad j=1,2,\ldots,n\]
+For $n=2$, $\det H_1=a_1>0$ and $H_2=
+\begin{pmatrix}
+a_1  & 1  \\
+0  & a_2
+\end{pmatrix}=a_1a_2>0$
+or $a_1>0$ and $a_2>0$.
+For polynomials of degree $2,3,4$ and $5$, the Routh Hurwitz Criteria are summarized as follows:
+\begin{align}
+n=2: &a_1>0 \mbox{ and } a_2>0\\
+n=3: &a_1>0,a_3>0 \mbox{ and } a_1a_2-a_3>0\\
+n=4: &a_1>0,a_3>0,a_4>0 \mbox{ and } a_1a_2a_3-a_3^2-a_1^2a_4>0\\
+n=5: &a_i>0,i=1,2,3,4 \mbox{ and } 5,  a_1a_2a_3-a_3^2-a_1^2a_4>0,
+\end{align}
+and
+\begin{align}
+&(a_1a_4-a_5)(a_1a_2a_3-a_3^2-a_1^2a_4)-a_5(a_1a_2-a_3)^2-a_1a_5^2>0
+\end{align}
+% ------------------------------------------------------------------------------
+% End document
+% ------------------------------------------------------------------------------
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{Jun}
+[W.G. Kelley and A.C. Peterson] ~
+The Theory of Differential Equations: Classical and Qualitative.
+
+\bibitem{July}
+[Coddington and Levinson] ~
+Theory of Ordinary Differential Equations, McGraw-Hill, New York, 1955.
+
+\end{thebibliography}
+\end{document}
